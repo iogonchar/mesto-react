@@ -1,5 +1,7 @@
+// component imports
+import Header from './Header';
+
 // image imports
-import imgLogo from '../images/logo.svg';
 import imgEditProfile from '../images/edit-profile.svg';
 import imgAddCard from '../images/add-button.svg';
 
@@ -11,13 +13,7 @@ import imgAvatar from '../images/avatar.jpg';
 function App() {
   return (
     <div className="page__content">
-      <header className="header">
-        <img
-          className="header__logo"
-          src={imgLogo}
-          alt="Логотип проекта Mesto"
-        />
-      </header>
+      <Header />
 
       <main className="content">
         <section className="profile">
