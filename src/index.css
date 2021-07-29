@@ -1,13 +1,30 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+/* normalize.css */
+@import url(./vendor/normalize.css);
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* fonts */
+@import url(./vendor/fonts/fonts.css);
+
+/* body styles */
+@import url(./blocks/body/body.css);
+
+/* header styles */
+@import url(./blocks/header/header.css);
+@import url(./blocks/header/__logo/header__logo.css);
+
+/* profile section styles */
+@import url(./blocks/profile/profile.css);
+@import url(./blocks/profile/__avatar-wrapper/profile__avatar-wrapper.css);
+@import url(./blocks/profile/__avatar-change-btn/profile__avatar-change-btn.css);
+@import url(./blocks/profile/__avatar/profile__avatar.css);
+@import url(./blocks/profile/__info-wrapper/profile__info-wrapper.css);
+@import url(./blocks/profile/__info/profile__info.css);
+@import url(./blocks/profile/__author/profile__author.css);
+@import url(./blocks/profile/__about/profile__about.css);
+@import url(./blocks/profile/__profile-edit-btn/profile__profile-edit-btn.css);
+@import url(./blocks/profile/__profile-edit/profile__profile-edit.css);
+@import url(./blocks/profile/__add-card-btn/profile__add-card-btn.css);
+@import url(./blocks/profile/__add-card/profile__add-card.css);
+
+/* footer styles */
+@import url(./blocks/footer/footer.css);
+@import url(./blocks/footer/__copyright/footer__copyright.css);
