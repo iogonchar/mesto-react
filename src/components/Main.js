@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 
+import Card from './Card';
+
 import api from '../utils/api';
 
 import imgEditProfile from '../images/edit-profile.svg';
@@ -10,13 +12,18 @@ function Main(props) {
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
 
+  const [cards, setCards] = useState([]);
+
   useEffect(() => {
     Promise.all([ api.getUserInfo(), api.getInitialCards() ])
       .then(values => {
         const [userInfo, initialCards] = values;
+
         setUserName(userInfo.name);
         setUserDescription(userInfo.about);
         setUserAvatar(userInfo.avatar);
+
+        setCards(initialCards);
       })
       .catch(err => console.log(err));
   });
@@ -69,7 +76,18 @@ function Main(props) {
         </button>
       </section>
 
-      <section className="places"></section>
+      <section className="places">
+        <ul className="places__list">
+          {
+            cards.map(card =>
+              <Card
+                key={card._id}
+                card={card}
+              />
+            )
+          }
+        </ul>
+      </section>
     </main>
   );
 }
