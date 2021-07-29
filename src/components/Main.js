@@ -4,7 +4,7 @@ import imgAddCard from '../images/add-button.svg';
 // Аватар временно !!!
 import imgAvatar from '../images/avatar.jpg';
 
-function Main() {
+function Main(props) {
   return (
     <main className="content">
       <section className="profile">
@@ -15,7 +15,10 @@ function Main() {
             src={imgAvatar}
             alt="Аватар"
           />
-          <button className="profile__avatar-change-btn"></button>
+          <button
+            className="profile__avatar-change-btn"
+            onClick={props.onEditAvatar}
+          ></button>
         </div>
 
         {/* user info */}
@@ -25,7 +28,10 @@ function Main() {
             <p className="profile__about">Исследователь океана</p>
           </div>
 
-          <button className="profile__profile-edit-btn">
+          <button
+            className="profile__profile-edit-btn"
+            onClick={props.onEditProfile}
+          >
             <img
               className="profile__profile-edit"
               src={imgEditProfile}
@@ -35,7 +41,10 @@ function Main() {
         </div>
 
         {/* add new card */}
-        <button className="profile__add-card-btn">
+        <button
+          className="profile__add-card-btn"
+          onClick={props.onAddPlace}
+        >
           <img
             className="profile__add-card"
             src={imgAddCard}
