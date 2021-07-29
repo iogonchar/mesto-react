@@ -1,10 +1,26 @@
+import { useState, useEffect } from 'react';
+
+import api from '../utils/api';
+
 import imgEditProfile from '../images/edit-profile.svg';
 import imgAddCard from '../images/add-button.svg';
 
-// Аватар временно !!!
-import imgAvatar from '../images/avatar.jpg';
-
 function Main(props) {
+  const [userName, setUserName] = useState('');
+  const [userDescription, setUserDescription] = useState('');
+  const [userAvatar, setUserAvatar] = useState('');
+
+  useEffect(() => {
+    Promise.all([ api.getUserInfo(), api.getInitialCards() ])
+      .then(values => {
+        const [userInfo, initialCards] = values;
+        setUserName(userInfo.name);
+        setUserDescription(userInfo.about);
+        setUserAvatar(userInfo.avatar);
+      })
+      .catch(err => console.log(err));
+  });
+
   return (
     <main className="content">
       <section className="profile">
@@ -12,7 +28,7 @@ function Main(props) {
         <div className="profile__avatar-wrapper">
           <img
             className="profile__avatar"
-            src={imgAvatar}
+            src={userAvatar}
             alt="Аватар"
           />
           <button
@@ -24,8 +40,8 @@ function Main(props) {
         {/* user info */}
         <div className="profile__info-wrapper">
           <div className="profile__info">
-            <h1 className="profile__author">Жак-Ив Кусто</h1>
-            <p className="profile__about">Исследователь океана</p>
+            <h1 className="profile__author">{userName}</h1>
+            <p className="profile__about">{userDescription}</p>
           </div>
 
           <button
