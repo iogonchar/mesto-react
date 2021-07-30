@@ -8,12 +8,16 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
+  // popup state
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
   const [isImagePopupOpen, setIsImagePopupOpen] = useState(false);
+
+  // card state
   const [selectedCard, setSelectedCard] = useState({});
 
+  // popup open handlers
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
   }
@@ -31,6 +35,7 @@ function App() {
     setIsImagePopupOpen(true);
   }
 
+  // popup close handler
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);

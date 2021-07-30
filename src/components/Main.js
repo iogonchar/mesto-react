@@ -1,17 +1,22 @@
 import { useState, useEffect } from 'react';
 
+// component imports
 import Card from './Card';
 
+// utils imports
 import api from '../utils/api';
 
+// image imports
 import imgEditProfile from '../images/edit-profile.svg';
 import imgAddCard from '../images/add-button.svg';
 
 function Main(props) {
+  // user information state
   const [userName, setUserName] = useState('');
   const [userDescription, setUserDescription] = useState('');
   const [userAvatar, setUserAvatar] = useState('');
 
+  // cards state
   const [cards, setCards] = useState([]);
 
   useEffect(() => {

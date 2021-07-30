@@ -1,3 +1,4 @@
+// image imports
 import imgClosePopup from '../images/close-icon.svg';
 
 function ImagePopup(props) {

@@ -1,3 +1,4 @@
+// image imports
 import imgLogo from '../images/logo.svg';
 
 function Header() {

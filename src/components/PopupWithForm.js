@@ -1,3 +1,4 @@
+// image imports
 import imgClosePopup from '../images/close-icon.svg';
 
 function PopupWithForm(props) {
@@ -22,7 +23,7 @@ function PopupWithForm(props) {
           name={`popup-${props.name}-form`}
           id={`popup-${props.name}-form`}
         >
-          {/* Вставить содержимое формы */}
+          {/* Вставить содержимое формы (инпуты через children)*/}
           <button className="popup__form-submit-btn" type="submit">Сохранить</button>
         </form>
       </div>
