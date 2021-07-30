@@ -31,7 +31,7 @@ function Main(props) {
         setCards(initialCards);
       })
       .catch(err => console.log(err));
-  });
+  }, []);
 
   return (
     <main className="content">
