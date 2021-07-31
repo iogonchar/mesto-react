@@ -54,27 +54,54 @@ function App() {
         onCardClick={handleCardClick}
       />
       <Footer />
+
       <PopupWithForm
         title="Обновить аватар"
         name="edit-avatar"
         buttonText="Сохранить"
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
-      />
+      >
+        <label className="popup__form-field">
+          <input className="popup__form-input" id="user-avatar" name="avatar" placeholder="Ссылка на аватар" required type="url" />
+          <span className="popup__form-input-error user-avatar-input-error"></span>
+        </label>
+      </PopupWithForm>
+
       <PopupWithForm
         title="Редактировать профиль"
         name="edit-profile"
         buttonText="Сохранить"
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
-      />
+      >
+        <label className="popup__form-field">
+          <input className="popup__form-input" id="author" name="author" placeholder="Имя" type="text" required minLength="2" maxLength="40" />
+          <span className="popup__form-input-error author-input-error"></span>
+        </label>
+        <label className="popup__form-field">
+          <input className="popup__form-input" id="about-author" name="about" placeholder="Занятие" type="text" required minLength="2" maxLength="200" />
+          <span className="popup__form-input-error about-author-input-error"></span>
+        </label>
+      </PopupWithForm>
+
       <PopupWithForm
         title="Новое место"
         name="add-place"
         buttonText="Сохранить"
         isOpen={isAddPlacePopupOpen}
         onClose={closeAllPopups}
-      />
+      >
+        <label className="popup__form-field">
+          <input className="popup__form-input" id="place" name="name" type="text" placeholder="Название" required minLength="2" maxLength="30" />
+          <span className="popup__form-input-error place-input-error"></span>
+        </label>
+        <label className="popup__form-field">
+          <input className="popup__form-input" id="place-img" name="link" placeholder="Ссылка на картинку" required type="url" />
+          <span className="popup__form-input-error place-img-input-error"></span>
+        </label>
+      </PopupWithForm>
+
       <ImagePopup
         isOpen={isImagePopupOpen}
         card={selectedCard}

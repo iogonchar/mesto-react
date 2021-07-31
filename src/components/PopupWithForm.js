@@ -23,7 +23,7 @@ function PopupWithForm(props) {
           name={`popup-${props.name}-form`}
           id={`popup-${props.name}-form`}
         >
-          {/* Вставить содержимое формы (инпуты через children)*/}
+          {props.children}
           <button className="popup__form-submit-btn" type="submit">{props.buttonText}</button>
         </form>
       </div>
