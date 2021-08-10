@@ -1,4 +1,21 @@
+import React from 'react';
+
+// context imports
+import { CurrentUserContext } from '../conexts/CurrentUserContext';
+
 function Card(props) {
+  const currentUser = React.useContext(CurrentUserContext);
+
+  const isOwn = props.card.owner._id === currentUser._id;
+  // const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+  const cardDeleteButtonClassName = (
+    `places__delete-card-btn ${isOwn ? '' : 'places__delete-card-btn_hidden'}`
+  );
+
+  // const cardLikeButtonClassName = (
+  //   `...`
+  // );
 
   function handleCardClick() {
     props.onCardClick(props.card);
@@ -6,7 +23,7 @@ function Card(props) {
 
   return (
     <li className="places__card">
-      <button className="places__delete-card-btn"></button>
+      <button className={cardDeleteButtonClassName}></button>
       <img className="places__img" src={props.card.link} alt={props.card.name} onClick={handleCardClick} />
       <h2 className="places__title">{props.card.name}</h2>
       <div className="places__like-wrapper">

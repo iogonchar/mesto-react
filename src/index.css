@@ -30,6 +30,7 @@
 @import url(./blocks/places/__list/places__list.css);
 @import url(./blocks/places/__card/places__card.css);
 @import url(./blocks/places/__delete-card-btn/places__delete-card-btn.css);
+@import url(./blocks/places/__delete-card-btn/_hidden/places__delete-card-btn_hidden.css);
 @import url(./blocks/places/__img/places__img.css);
 @import url(./blocks/places/__title/places__title.css);
 @import url(./blocks/places/__like-wrapper/places__like-wrapper.css);

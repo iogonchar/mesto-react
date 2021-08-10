@@ -12,8 +12,7 @@ import imgAddCard from '../images/add-button.svg';
 
 
 function Main(props) {
-  const user = React.useContext(CurrentUserContext);
-  console.log(user);
+  const currentUser = React.useContext(CurrentUserContext);
 
   return (
     <main className="content">
@@ -22,7 +21,7 @@ function Main(props) {
         <div className="profile__avatar-wrapper">
           <img
             className="profile__avatar"
-            src={user.avatar}
+            src={currentUser.avatar}
             alt="Аватар"
           />
           <button
@@ -34,8 +33,8 @@ function Main(props) {
         {/* user info */}
         <div className="profile__info-wrapper">
           <div className="profile__info">
-            <h1 className="profile__author">{user.name}</h1>
-            <p className="profile__about">{user.about}</p>
+            <h1 className="profile__author">{currentUser.name}</h1>
+            <p className="profile__about">{currentUser.about}</p>
           </div>
 
           <button
