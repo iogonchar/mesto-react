@@ -10,7 +10,6 @@ import { CurrentUserContext } from '../conexts/CurrentUserContext';
 import imgEditProfile from '../images/edit-profile.svg';
 import imgAddCard from '../images/add-button.svg';
 
-
 function Main(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
@@ -70,6 +69,7 @@ function Main(props) {
                 key={card._id}
                 card={card}
                 onCardClick={props.onCardClick}
+                onCardLike={props.onCardLike}
               />
             ))
           }
