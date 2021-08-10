@@ -53,9 +53,17 @@ function App() {
     // current user state
     const [currentUser, setCurrentUser] = useState({});
 
+    // cards state
+    const [cards, setCards] = useState([]);
+
     useEffect(() => {
-      api.getUserInfo()
-        .then((user) => setCurrentUser(user))
+      Promise.all([ api.getUserInfo(), api.getCards() ])
+        .then((values) => {
+          const [user, cards] = values;
+
+          setCurrentUser(user);
+          setCards(cards);
+        })
         .catch(err => console.log(err));
     }, []);
 
@@ -64,6 +72,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header />
         <Main
+          cards={cards}
           onEditAvatar={handleEditAvatarClick}
           onEditProfile={handleEditProfileClick}
           onAddPlace={handleAddPlaceClick}

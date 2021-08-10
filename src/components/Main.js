@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 // component imports
 import Card from './Card';
 
 // context imports
 import { CurrentUserContext } from '../conexts/CurrentUserContext';
-
-// utils imports
-import api from '../utils/api';
 
 // image imports
 import imgEditProfile from '../images/edit-profile.svg';
@@ -17,28 +14,6 @@ import imgAddCard from '../images/add-button.svg';
 function Main(props) {
   const user = React.useContext(CurrentUserContext);
   console.log(user);
-
-  // user information state
-  // const [userName, setUserName] = useState('');
-  // const [userDescription, setUserDescription] = useState('');
-  // const [userAvatar, setUserAvatar] = useState('');
-
-  // cards state
-  const [cards, setCards] = useState([]);
-
-  useEffect(() => {
-    Promise.all([ api.getUserInfo(), api.getInitialCards() ])
-      .then(values => {
-        const [userInfo, initialCards] = values;
-
-        // setUserName(userInfo.name);
-        // setUserDescription(userInfo.about);
-        // setUserAvatar(userInfo.avatar);
-
-        setCards(initialCards);
-      })
-      .catch(err => console.log(err));
-  }, []);
 
   return (
     <main className="content">
@@ -91,7 +66,7 @@ function Main(props) {
       <section className="places">
         <ul className="places__list">
           {
-            cards.map(card => (
+            props.cards.map(card => (
               <Card
                 key={card._id}
                 card={card}

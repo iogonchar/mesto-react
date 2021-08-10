@@ -42,7 +42,7 @@ class Api {
     .then(res => this._getResponseData(res));
   }
 
-  getInitialCards() {
+  getCards() {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'GET',
       headers: this._headers
