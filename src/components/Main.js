@@ -4,7 +4,7 @@ import React from 'react';
 import Card from './Card';
 
 // context imports
-import { CurrentUserContext } from '../conexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 // image imports
 import imgEditProfile from '../images/edit-profile.svg';

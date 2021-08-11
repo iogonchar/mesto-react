@@ -10,7 +10,7 @@ import EditAvatarPopup from './EditAvatarPopup';
 import AddPlacePopup from './AddPlacePopup';
 
 // context imports
-import { CurrentUserContext } from '../conexts/CurrentUserContext';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 // utils imports
 import api from '../utils/api';
