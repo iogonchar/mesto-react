@@ -6,6 +6,7 @@ import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
+import EditProfilePopup from './EditProfilePopup';
 
 // context imports
 import { CurrentUserContext } from '../conexts/CurrentUserContext';
@@ -50,45 +51,56 @@ function App() {
     setSelectedCard({});
   }
 
-    // current user state
-    const [currentUser, setCurrentUser] = useState({});
+  // current user state
+  const [currentUser, setCurrentUser] = useState({});
 
-    // cards state
-    const [cards, setCards] = useState([]);
+  // cards state
+  const [cards, setCards] = useState([]);
 
-    useEffect(() => {
-      Promise.all([ api.getUserInfo(), api.getCards() ])
-        .then((values) => {
-          const [user, cards] = values;
+  useEffect(() => {
+    Promise.all([ api.getUserInfo(), api.getCards() ])
+      .then((values) => {
+        const [user, cards] = values;
 
-          setCurrentUser(user);
-          setCards(cards);
-        })
-        .catch(err => console.log(err));
-    }, []);
+        setCurrentUser(user);
+        setCards(cards);
+      })
+      .catch(err => console.log(err));
+  }, []);
 
-    // like card
-    function handleCardLike(card) {
-      // Снова проверяем, есть ли уже лайк на этой карточке
-      const isLiked = card.likes.some(i => i._id === currentUser._id);
+  // like card
+  function handleCardLike(card) {
+    // Снова проверяем, есть ли уже лайк на этой карточке
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-      // Отправляем запрос в API и получаем обновлённые данные карточки
-      api.changeLikeCardStatus(card._id, !isLiked)
-        .then((newCard) => {
-          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-        })
-        .catch((err) => console.log(err));
-    }
+    // Отправляем запрос в API и получаем обновлённые данные карточки
+    api.changeLikeCardStatus(card._id, !isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+      })
+      .catch((err) => console.log(err));
+  }
 
-    // delete card
-    function handleCardDelete(card) {
-      console.log(card);
-      api.deleteCard(card._id)
-        .then(() => {
-          setCards(cards.filter((item) => item._id !== card._id))
-        })
-        .catch((err) => console.log(err));
-    }
+  // delete card
+  function handleCardDelete(card) {
+    console.log(card);
+    api.deleteCard(card._id)
+      .then(() => {
+        setCards(cards.filter((item) => item._id !== card._id))
+      })
+      .catch((err) => console.log(err));
+  }
+
+  // update user profile
+  function handleUpdateUser(userInfo) {
+    console.log(userInfo);
+    api.updateUserInfo(userInfo)
+      .then((res) => {
+        setCurrentUser(res);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div className="page__content">
@@ -118,22 +130,7 @@ function App() {
           </label>
         </PopupWithForm>
 
-        <PopupWithForm
-          title="Редактировать профиль"
-          name="edit-profile"
-          buttonText="Сохранить"
-          isOpen={isEditProfilePopupOpen}
-          onClose={closeAllPopups}
-        >
-          <label className="popup__form-field">
-            <input className="popup__form-input" id="author" name="author" placeholder="Имя" type="text" required minLength="2" maxLength="40" />
-            <span className="popup__form-input-error author-input-error"></span>
-          </label>
-          <label className="popup__form-field">
-            <input className="popup__form-input" id="about-author" name="about" placeholder="Занятие" type="text" required minLength="2" maxLength="200" />
-            <span className="popup__form-input-error about-author-input-error"></span>
-          </label>
-        </PopupWithForm>
+        <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
         <PopupWithForm
           title="Новое место"
