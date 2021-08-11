@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 import EditProfilePopup from './EditProfilePopup';
 import EditAvatarPopup from './EditAvatarPopup';
+import AddPlacePopup from './AddPlacePopup';
 
 // context imports
 import { CurrentUserContext } from '../conexts/CurrentUserContext';
@@ -84,7 +84,6 @@ function App() {
 
   // delete card
   function handleCardDelete(card) {
-    console.log(card);
     api.deleteCard(card._id)
       .then(() => {
         setCards(cards.filter((item) => item._id !== card._id))
@@ -112,6 +111,16 @@ function App() {
       .catch((err) => console.log(err));
   }
 
+  // add new card
+  function handleAddPlace(cardData) {
+    api.addNewCard(cardData)
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <div className="page__content">
       <CurrentUserContext.Provider value={currentUser}>
@@ -131,22 +140,7 @@ function App() {
 
         <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
 
-        <PopupWithForm
-          title="Новое место"
-          name="add-place"
-          buttonText="Сохранить"
-          isOpen={isAddPlacePopupOpen}
-          onClose={closeAllPopups}
-        >
-          <label className="popup__form-field">
-            <input className="popup__form-input" id="place" name="name" type="text" placeholder="Название" required minLength="2" maxLength="30" />
-            <span className="popup__form-input-error place-input-error"></span>
-          </label>
-          <label className="popup__form-field">
-            <input className="popup__form-input" id="place-img" name="link" placeholder="Ссылка на картинку" required type="url" />
-            <span className="popup__form-input-error place-img-input-error"></span>
-          </label>
-        </PopupWithForm>
+        <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlace} />
 
         <ImagePopup
           isOpen={isImagePopupOpen}
