@@ -10,7 +10,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 import imgEditProfile from '../images/edit-profile.svg';
 import imgAddCard from '../images/add-button.svg';
 
-function Main(props) {
+function Main({ cards, onEditAvatar, onEditProfile, onAddPlace, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = React.useContext(CurrentUserContext);
 
   return (
@@ -25,7 +25,7 @@ function Main(props) {
           />
           <button
             className="profile__avatar-change-btn"
-            onClick={props.onEditAvatar}
+            onClick={onEditAvatar}
           ></button>
         </div>
 
@@ -38,7 +38,7 @@ function Main(props) {
 
           <button
             className="profile__profile-edit-btn"
-            onClick={props.onEditProfile}
+            onClick={onEditProfile}
           >
             <img
               className="profile__profile-edit"
@@ -51,7 +51,7 @@ function Main(props) {
         {/* add new card */}
         <button
           className="profile__add-card-btn"
-          onClick={props.onAddPlace}
+          onClick={onAddPlace}
         >
           <img
             className="profile__add-card"
@@ -64,13 +64,13 @@ function Main(props) {
       <section className="places">
         <ul className="places__list">
           {
-            props.cards.map(card => (
+            cards.map(card => (
               <Card
                 key={card._id}
                 card={card}
-                onCardClick={props.onCardClick}
-                onCardLike={props.onCardLike}
-                onCardDelete={props.onCardDelete}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+                onCardDelete={onCardDelete}
               />
             ))
           }
