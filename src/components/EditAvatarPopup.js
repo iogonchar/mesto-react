@@ -1,22 +1,19 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 
 // component imports
 import PopupWithForm from "./PopupWithForm";
 
 function EditAvatarPopup(props) {
-  const avatar = useRef('');
-  const [avatarLink, setAvatarLink] = useState();
-
-  function handleAvatarLinkChange(e) {
-    setAvatarLink(e.target.value);
-  }
+  const avatarRef = useRef('');
 
   function handleSubmit(e) {
     e.preventDefault();
 
     props.onUpdateAvatar({
-      avatar: avatar.current.value
-    });
+      avatar: avatarRef.current.value
+    })
+      .then(() => avatarRef.current.value = '')
+      .catch((err) => console.log(err));
   }
 
   return(
@@ -30,15 +27,13 @@ function EditAvatarPopup(props) {
     >
       <label className="popup__form-field">
         <input
-          ref={avatar}
+          ref={avatarRef}
           className="popup__form-input"
           id="user-avatar"
           name="avatar"
           placeholder="Ссылка на аватар"
           required
           type="url"
-          value={avatarLink || ''}
-          onChange={handleAvatarLinkChange}
         />
         <span className="popup__form-input-error user-avatar-input-error"></span>
       </label>

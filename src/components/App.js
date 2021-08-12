@@ -103,7 +103,7 @@ function App() {
 
   // update user avatar
   function handleUpdateAvatar(data) {
-    api.updateUserAvatar(data)
+    return api.updateUserAvatar(data)
       .then((res) => {
         setCurrentUser(res);
         closeAllPopups();
