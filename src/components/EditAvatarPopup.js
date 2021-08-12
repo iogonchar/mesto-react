@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 // component imports
 import PopupWithForm from "./PopupWithForm";
 
-function EditProfilePopup(props) {
+function EditAvatarPopup(props) {
   const avatar = useRef('');
   const [avatarLink, setAvatarLink] = useState();
 
@@ -46,4 +46,4 @@ function EditProfilePopup(props) {
   );
 }
 
-export default EditProfilePopup;
+export default EditAvatarPopup;
